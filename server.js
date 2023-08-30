@@ -1,0 +1,33 @@
+const express = require("express");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+const loteriaRoutes = require("./routes");
+
+const app = express();
+
+// Middlewares
+app.use(cors());
+app.use(bodyParser.json());
+app.use((req, res, next) => {
+  const now = new Date();
+  console.log(`[${now.toISOString()}] ${req.method} ${req.url}`);
+  next();
+});
+
+// Routes
+app.use("/api/loteria", LoteriaRoutes);
+
+// Route not found
+app.use((req, res, next) => {
+  console.error(
+    "There might be an error on your path route, please take a look"
+  );
+  return res.sendStatus(404);
+});
+
+const PORT = process.env.PORT || 8080;
+
+app.listen(PORT, () => {
+  console.log(`Server API is running on port ${PORT}`);
+});
+
