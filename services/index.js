@@ -59,7 +59,7 @@ exports.deleteCard = async (id) => {
   if (!user) {
     throw new Error(`${card.name} does not exist in db`);
   }
-  await usuario.destroy();
+  await user.destroy();
   return Promise.resolve({
     success: true,
     message: "User with ${id} has been delete it",
