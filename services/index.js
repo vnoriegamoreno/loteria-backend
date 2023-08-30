@@ -20,7 +20,8 @@ exports.getCard = (filter) => {
 };
 
 exports.createCard = async (card) => {
-  if (await exports.getCard({ name: card.name })) {
+  const existCard = await exports.getCard({ name: card.name });
+  if (existCard?.length) {
     throw new Error(
       `${card.name} already exist in the database, can not created duplicate users.`
     );
