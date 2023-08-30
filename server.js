@@ -15,7 +15,7 @@ app.use((req, res, next) => {
 });
 
 // Routes
-app.use("/api/loteria", LoteriaRoutes);
+app.use("/api/loteria", loteriaRoutes);
 
 // Route not found
 app.use((req, res, next) => {
@@ -30,4 +30,3 @@ const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`Server API is running on port ${PORT}`);
 });
-
